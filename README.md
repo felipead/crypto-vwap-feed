@@ -10,7 +10,7 @@ This is a real-time VWAP ([volume-weighted average price](https://en.wikipedia.o
 ## Setup
 
 ```
-pipenv install
+pipenv install --dev
 ```
 
 ## Run unit tests
