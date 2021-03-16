@@ -4,6 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+marshmallow = "*"
+python-dateutil = "*"
 
 [dev-packages]
 pytest = "*"
