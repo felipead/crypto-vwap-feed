@@ -2,7 +2,7 @@ import bisect
 from decimal import Decimal
 from typing import List, Collection
 
-from src.app.model import TradingPair, TradingPoint
+from application.model import TradingPair, TradingPoint
 
 _ZERO = Decimal(0)
 

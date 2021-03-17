@@ -4,10 +4,10 @@ from decimal import Decimal
 import dateutil.parser
 import pytest
 
-from src.app.coinbase.model import Match, Subscribe, Channel
-from src.app.coinbase.schema import deserialize_message, serialize_message
-from src.app.errors import SchemaValidationError
-from src.app.model import TradingPair
+from application.coinbase.model import Match, Subscribe, Channel
+from application.coinbase.schema import deserialize_message, serialize_message
+from application.errors import SchemaValidationError
+from application.model import TradingPair
 
 
 def build_match_payload() -> dict:

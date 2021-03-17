@@ -4,8 +4,8 @@ from datetime import datetime
 from decimal import Decimal
 from typing import Collection
 
-from src.app.enum import TextEnum
-from src.app.model import TradingPoint, TradingPair
+from application.enum import TextEnum
+from application.model import TradingPoint, TradingPair
 
 
 class Channel(TextEnum):

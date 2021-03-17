@@ -1,2 +1,4 @@
 #!/usr/bin/env sh
-pipenv run pytest --verbose
+set -e
+
+docker-compose run test test "$@"

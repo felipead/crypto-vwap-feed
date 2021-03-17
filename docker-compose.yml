@@ -1,0 +1,29 @@
+version: '3.8'
+
+x-app_volumes: &app_volumes
+  volumes:
+    - ./src/application:/home/app/application
+
+x-ci_volumes: &ci_volumes
+  volumes:
+    - ./src/application:/home/app/application
+    - ./src/tests:/home/app/tests
+
+services:
+  app:
+    image: crypto-vwap-feed/app:latest
+    container_name: crypto-vwap-feed_app
+    build:
+      context: .
+      dockerfile: ./build/app/Dockerfile
+    user: app
+    <<: *app_volumes
+
+  test:
+    image: crypto-vwap-feed/ci:latest
+    container_name: crypto-vwap-feed_ci
+    build:
+      context: .
+      dockerfile: ./build/ci/Dockerfile
+    command: test
+    <<: *ci_volumes
