@@ -20,17 +20,17 @@ For every trading pair we're interested about (eg: `BTC-USD`), we compute the VW
 where:
 
 - <img src="https://render.githubusercontent.com/render/math?math=P_{VWAP}"> is the Volume Weighted Average Price;
-- <img src="https://render.githubusercontent.com/render/math?math=P_{j}"> is price of trade _j_;
-- <img src="https://render.githubusercontent.com/render/math?math=Q_{j}"> is quantity of trade _j_;
-- _j_ is each individual trade that takes place over the defined period of time, excluding cross trades and basket cross trades.
+- <img src="https://render.githubusercontent.com/render/math?math=P_{j}"> is price of trade <img src="https://render.githubusercontent.com/render/math?math=j">;
+- <img src="https://render.githubusercontent.com/render/math?math=Q_{j}"> is quantity of trade <img src="https://render.githubusercontent.com/render/math?math=j">;
+- <img src="https://render.githubusercontent.com/render/math?math=j"> is each individual trade that takes place over the defined period of time, excluding cross trades and basket cross trades.
 
-### Out of order messages
+### Out-of-order messages
 
 According to Coinbase:
 
 > While a websocket connection is over TCP, the websocket servers receive market data in a manner which can result in dropped messages. Your feed consumer should either be designed to expect and handle sequence gaps and out-of-order messages, or use channels that guarantee delivery of messages.
 
-In order to handle out of order messages, we use the [_sequence numbers_](https://docs.pro.coinbase.com/#sequence-numbers) provided by Coinbase. We store messages in a priority queue or sorted list. As messages arrive, the oldest messages, i.e., those with smaller sequences, are dropped.
+To handle out-of-order messages, we use the [_sequence numbers_](https://docs.pro.coinbase.com/#sequence-numbers) provided by Coinbase. We store messages in a priority queue or list that is sorted by these sequences. As messages arrive, the oldest messages, i.e., those with smaller sequences, are dropped.
 
 ## Limitations and future improvements
 
