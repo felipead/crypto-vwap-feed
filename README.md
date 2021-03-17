@@ -4,17 +4,25 @@ This is a real-time VWAP ([volume-weighted average price](https://en.wikipedia.o
 
 ## Requirements
 
-- Python 3.9+
-- [`pipenv`](https://pypi.org/project/pipenv/)
+- `docker` or [Docker Desktop](https://docs.docker.com/desktop/)
+- `docker-compose` (included with _Docker Desktop_)
 
 ## Setup
 
+This will build the necessary Docker images:
+
 ```
-pipenv install --dev
+./build.sh
 ```
 
-## Run unit tests
+## Run the test suite
 
 ```
 ./test.sh
+```
+
+## Run the application
+
+```
+./run.sh
 ```
