@@ -6,6 +6,7 @@ This is a real-time VWAP ([volume-weighted average price](https://en.wikipedia.o
 
 - `docker` or [Docker Desktop](https://docs.docker.com/desktop/)
 - `docker-compose` (included with _Docker Desktop_)
+- `make` or [GNU Make](https://www.gnu.org/software/make/) (probably already installed in your OS). It is being used to build the Docker container dependencies. 
 
 ## Setup
 
