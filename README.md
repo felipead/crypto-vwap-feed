@@ -7,6 +7,8 @@ This is a real-time _Volume Weighted Average Price_ or [VWAP](https://en.wikiped
 - `ETH-BTC` (Ethereum to Bitcoin)
 - ...
 
+<img src="https://github.com/felipead/crypto-vwap-feed/raw/master/doc/running.gif">
+
 ## How it works
 
 It connects to the [Coinbase WebSocket](https://docs.pro.coinbase.com/#the-matches-channel) feed and listens to messages that represent trades. Coinbase call these [_matches_](https://docs.pro.coinbase.com/#match):
