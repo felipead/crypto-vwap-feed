@@ -40,8 +40,7 @@ def deserialize_message(payload: dict) -> Optional[Message]:
         logger.warning(f'Ignoring message without "type" => {payload}')
         return None
 
-    # TODO: figure out the difference between "match" and "last_match" message types.
-    if message_type == 'match':
+    if message_type in ('match', 'last_match'):
         return _deserialize(MatchSchema, payload)
 
     logger.info(f'Ignoring message with type "{message_type}"')
