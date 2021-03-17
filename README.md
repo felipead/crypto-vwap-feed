@@ -34,11 +34,21 @@ To handle out-of-order messages, we use the [_sequence numbers_](https://docs.pr
 
 ## Limitations and future improvements
 
+#### Use a _Sorted Set Time Series_ from Redis 
+
 We're currently storing these data points _in memory_. That means, if the application crashes all data points will be lost and it will take a while to accumulate this data again.
 
 As an improvement, we can store this data in a Redis queue. More specifically, we can use Redis to create a [time series that is sorted by lexicographic order](https://redislabs.com/redis-best-practices/time-series/lexicographic-sorted-set-time-series/). This will allow us to efficiently iterate over the time series sorted by the [_sequence numbers_](https://docs.pro.coinbase.com/#sequence-numbers) provided by Coinbase.
 
-We also need to have better error support and fault tolerance, in case Coinbase sends us ["error" messages](https://docs.pro.coinbase.com/#protocol-overview) or the WebSocket connection simply drops because of a [TCP timeout](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing).
+#### Cache the VWAP sum or compute it partially
+
+We're also computing the VWAP sum again every time. That's very wasteful, since we iterate over the 200 points in the time series whenever a new message is received from the Coinbase WebSocket. It was done this way just as a quick proof-of-concept, but it should be optimized before going to production.
+
+We cannot simply iterate over the last calculation result, keeping the previous sum in memory while adding the current data point. Because the messages arrive out of order, we need to be a bit more creative. 
+
+#### Fault tolerance
+
+Lastly, we need to have better error support and fault tolerance, in case Coinbase sends us ["error" messages](https://docs.pro.coinbase.com/#protocol-overview) or the WebSocket connection simply drops because of a [TCP timeout](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing).
 
 ## Requirements
 
