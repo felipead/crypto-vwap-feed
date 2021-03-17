@@ -1,12 +1,11 @@
 import logging
 from decimal import Decimal
 
-import dateutil.parser
 import pytest
 
+from src.app.coinbase.model import Match
 from src.app.coinbase.schema import deserialize_message
 from src.app.errors import SchemaValidationError
-from src.app.model import Match
 
 
 def build_match_message() -> dict:
@@ -31,11 +30,10 @@ def test_deserialize_valid_match_message():
     assert message is not None
     assert isinstance(message, Match)
 
-    assert message.size == Decimal(payload['size'])
+    assert message.quantity == Decimal(payload['size'])
     assert message.price == Decimal(payload['price'])
-    assert message.product_id == payload['product_id']
+    assert str(message.pair) == payload['product_id']
     assert message.sequence == payload['sequence']
-    assert message.time == dateutil.parser.parse(payload['time'])
 
 
 def test_fail_to_deserialize_match_message_without_size():

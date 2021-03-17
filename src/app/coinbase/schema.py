@@ -4,8 +4,8 @@ from typing import Optional, Type
 import marshmallow
 from marshmallow import Schema, EXCLUDE, post_load, fields
 
+from src.app.coinbase.model import Match, Message
 from src.app.errors import SchemaValidationError
-from src.app.model import Match, Message
 
 logger = getLogger(__name__)
 
