@@ -6,9 +6,9 @@ from logging import getLogger
 
 import websockets
 
-from src.app.coinbase.model import Subscribe, Channel, Match
+from src.app.coinbase.model import Subscribe, Channel
 from src.app.coinbase.schema import deserialize_message, serialize_message
-from src.app.model import TradingPair
+from src.app.model import TradingPair, TradingPoint
 from src.app.vwap import VWAP
 
 logger = getLogger()
@@ -47,11 +47,11 @@ async def listen(websocket):
     logger.info('Listening to messages…')
     async for raw_message in websocket:
         message = deserialize_message(json.loads(raw_message))
-        if message and isinstance(message, Match):
+        if message and isinstance(message, TradingPoint):
             process(message)
 
 
-def process(point: Match):
+def process(point: TradingPoint):
     for vwap in VWAPS:
         if vwap.supports(point):
             vwap.add(point)

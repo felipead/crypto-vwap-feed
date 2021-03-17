@@ -17,7 +17,6 @@ class VWAP:
         self._trading_pair = trading_pair
         self._max_size = max_size
         self._points: List[TradingPoint] = []
-        self._current_value = _ZERO
 
     def supports(self, point: TradingPoint) -> bool:
         return self._trading_pair == point.pair
