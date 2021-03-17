@@ -1,4 +1,4 @@
-from src.app.enum import TextEnum
+from application.enum import TextEnum
 
 
 class TestTextEnum:

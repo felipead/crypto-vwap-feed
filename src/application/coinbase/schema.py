@@ -5,9 +5,9 @@ import marshmallow
 from marshmallow import Schema, EXCLUDE, post_load, fields
 from marshmallow.validate import OneOf
 
-from src.app.coinbase.model import Match, Message, Subscribe
-from src.app.errors import SchemaValidationError
-from src.app.model import TradingPair
+from application.coinbase.model import Match, Message, Subscribe
+from application.errors import SchemaValidationError
+from application.model import TradingPair
 
 logger = getLogger(__name__)
 

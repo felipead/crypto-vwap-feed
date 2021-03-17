@@ -3,8 +3,8 @@ from typing import List
 
 import pytest
 
-from src.app.model import TradingPair, TradingPoint
-from src.app.vwap import VWAP
+from application.model import TradingPair, TradingPoint
+from application.vwap import VWAP
 
 
 class FakePoint(TradingPoint):

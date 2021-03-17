@@ -6,10 +6,10 @@ from logging import getLogger
 
 import websockets
 
-from src.app.coinbase.model import Subscribe, Channel
-from src.app.coinbase.schema import deserialize_message, serialize_message
-from src.app.model import TradingPair, TradingPoint
-from src.app.vwap import VWAP
+from application.coinbase.model import Subscribe, Channel
+from application.coinbase.schema import deserialize_message, serialize_message
+from application.model import TradingPair, TradingPoint
+from application.vwap import VWAP
 
 logger = getLogger()
 logger.setLevel(logging.INFO)

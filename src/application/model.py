@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from decimal import Decimal
 from functools import total_ordering
 
-from src.app.enum import TextEnum
+from application.enum import TextEnum
 
 
 class TradingPair(TextEnum):
