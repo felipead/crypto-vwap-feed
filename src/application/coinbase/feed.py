@@ -29,7 +29,7 @@ VWAPS = tuple(VWAP(i) for i in TRADING_PAIRS)
 
 
 async def event_loop():
-    async with websockets.connect(WEBSOCKET_URI) as websocket:
+    async with websockets.connect(WEBSOCKET_URI, ssl=True) as websocket:
         await subscribe(websocket)
         await listen(websocket)
 
