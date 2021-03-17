@@ -10,6 +10,10 @@ case ${task} in
 test)
   pytest "${*:2}"
   ;;
+lint)
+  echo "Running Flake8…"
+  flake8 && echo "All good!"
+  ;;
 *)
   echo "ERROR: invalid container runtime task: '${task}'"
   exit 1

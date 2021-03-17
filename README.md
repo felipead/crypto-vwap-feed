@@ -17,8 +17,18 @@ This will build the necessary Docker images:
 
 ## Run the test suite
 
+Tests are run by [`pytest`](https://docs.pytest.org/en/stable/) within the CI Docker containers.
+
 ```
 ./test.sh
+```
+
+## Run lint (code style checks)
+
+Checks are run by [`Flake8`](https://flake8.pycqa.org/en/latest/) within the CI Docker containers.
+
+```
+./lint.sh
 ```
 
 ## Run the application

@@ -15,5 +15,6 @@ RUN set -eux; \
 
 COPY --chown=app:app src/application /home/app/application
 COPY --chown=app:app src/tests /home/app/tests
+COPY --chown=app:app .flake8 /home/app/.flake8
 
 ENTRYPOINT ["/home/app/task.sh"]

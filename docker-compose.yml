@@ -27,3 +27,12 @@ services:
       dockerfile: ./build/ci/Dockerfile
     command: test
     <<: *ci_volumes
+
+  lint:
+    image: crypto-vwap-feed/ci:latest
+    container_name: crypto-vwap-feed_ci
+    build:
+      context: .
+      dockerfile: ./build/ci/Dockerfile
+    command: lint
+    <<: *ci_volumes
