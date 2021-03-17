@@ -1,16 +1,14 @@
 from abc import ABC, abstractmethod
 from decimal import Decimal
-from enum import Enum
 from functools import total_ordering
 
+from src.app.enum import TextEnum
 
-class TradingPair(Enum):
+
+class TradingPair(TextEnum):
     BTC_USD = 'BTC-USD'
     ETH_USD = 'ETH-USD'
     ETH_BTC = 'ETH-BTC'
-
-    def __str__(self):
-        return self.value
 
 
 @total_ordering

@@ -1,17 +1,30 @@
 from abc import ABC
+from dataclasses import dataclass
 from datetime import datetime
 from decimal import Decimal
+from typing import Collection
 
+from src.app.enum import TextEnum
 from src.app.model import TradingPoint, TradingPair
+
+
+class Channel(TextEnum):
+    MATCHES = 'matches'
 
 
 class Message(ABC):
     pass
 
 
+@dataclass
+class Subscribe(Message):
+    product_ids: Collection[TradingPair]
+    channels: Collection[Channel]
+
+
 class Match(Message, TradingPoint):
 
-    def __init__(self, size: Decimal, price: Decimal, product_id: str, sequence: int, time: datetime):
+    def __init__(self, size: Decimal, price: Decimal, product_id: TradingPair, sequence: int, time: datetime):
         self._size = size
         self._price = price
         self._product_id = product_id

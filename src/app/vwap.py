@@ -17,8 +17,12 @@ class VWAP:
         self._trading_pair = trading_pair
         self._max_size = max_size
         self._points: List[TradingPoint] = []
+        self._current_value = _ZERO
 
-    def add_point(self, point: TradingPoint):
+    def supports(self, point: TradingPoint) -> bool:
+        return self._trading_pair == point.pair
+
+    def add(self, point: TradingPoint):
         if point.pair != self._trading_pair:
             raise ValueError(f'Unsupported trading pair: {point.pair}')
 
@@ -40,3 +44,6 @@ class VWAP:
     @property
     def points(self) -> Collection[TradingPoint]:
         return tuple(self._points)
+
+    def __str__(self) -> str:
+        return f'VWAP[{self._trading_pair}]'

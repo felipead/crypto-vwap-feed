@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 marshmallow = "*"
 python-dateutil = "*"
+websockets = "*"
 
 [dev-packages]
 pytest = "*"

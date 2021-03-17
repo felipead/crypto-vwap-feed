@@ -52,17 +52,17 @@ def new_point(
 def test_add_points_ensuring_the_list_remains_sorted_by_sequence():
     vwap = VWAP(TradingPair.BTC_USD)
 
-    vwap.add_point(new_point(sequence=9999999903))
-    vwap.add_point(new_point(sequence=9999999909))
-    vwap.add_point(new_point(sequence=9999999904))
-    vwap.add_point(new_point(sequence=9999999908))
-    vwap.add_point(new_point(sequence=9999999901))
-    vwap.add_point(new_point(sequence=9999999910))
-    vwap.add_point(new_point(sequence=42))
-    vwap.add_point(new_point(sequence=9999999905))
-    vwap.add_point(new_point(sequence=9999999907))
-    vwap.add_point(new_point(sequence=9999999902))
-    vwap.add_point(new_point(sequence=9999999906))
+    vwap.add(new_point(sequence=9999999903))
+    vwap.add(new_point(sequence=9999999909))
+    vwap.add(new_point(sequence=9999999904))
+    vwap.add(new_point(sequence=9999999908))
+    vwap.add(new_point(sequence=9999999901))
+    vwap.add(new_point(sequence=9999999910))
+    vwap.add(new_point(sequence=42))
+    vwap.add(new_point(sequence=9999999905))
+    vwap.add(new_point(sequence=9999999907))
+    vwap.add(new_point(sequence=9999999902))
+    vwap.add(new_point(sequence=9999999906))
 
     assert sequences(vwap) == [
         42,
@@ -82,26 +82,26 @@ def test_add_points_ensuring_the_list_remains_sorted_by_sequence():
 def test_add_points_discarding_the_oldest_when_the_list_grows_more_than_max_size():
     vwap = VWAP(TradingPair.BTC_USD, max_size=20)
 
-    vwap.add_point(new_point(sequence=1040))
-    vwap.add_point(new_point(sequence=1020))
-    vwap.add_point(new_point(sequence=1030))
-    vwap.add_point(new_point(sequence=1090))
-    vwap.add_point(new_point(sequence=1060))
-    vwap.add_point(new_point(sequence=1010))
-    vwap.add_point(new_point(sequence=1070))
-    vwap.add_point(new_point(sequence=1180))
-    vwap.add_point(new_point(sequence=1080))
-    vwap.add_point(new_point(sequence=1100))
-    vwap.add_point(new_point(sequence=1160))
-    vwap.add_point(new_point(sequence=1150))
-    vwap.add_point(new_point(sequence=1110))
-    vwap.add_point(new_point(sequence=1120))
-    vwap.add_point(new_point(sequence=1130))
-    vwap.add_point(new_point(sequence=1200))
-    vwap.add_point(new_point(sequence=1050))
-    vwap.add_point(new_point(sequence=1140))
-    vwap.add_point(new_point(sequence=1170))
-    vwap.add_point(new_point(sequence=1190))
+    vwap.add(new_point(sequence=1040))
+    vwap.add(new_point(sequence=1020))
+    vwap.add(new_point(sequence=1030))
+    vwap.add(new_point(sequence=1090))
+    vwap.add(new_point(sequence=1060))
+    vwap.add(new_point(sequence=1010))
+    vwap.add(new_point(sequence=1070))
+    vwap.add(new_point(sequence=1180))
+    vwap.add(new_point(sequence=1080))
+    vwap.add(new_point(sequence=1100))
+    vwap.add(new_point(sequence=1160))
+    vwap.add(new_point(sequence=1150))
+    vwap.add(new_point(sequence=1110))
+    vwap.add(new_point(sequence=1120))
+    vwap.add(new_point(sequence=1130))
+    vwap.add(new_point(sequence=1200))
+    vwap.add(new_point(sequence=1050))
+    vwap.add(new_point(sequence=1140))
+    vwap.add(new_point(sequence=1170))
+    vwap.add(new_point(sequence=1190))
 
     assert sequences(vwap) == [
         1010,
@@ -126,7 +126,7 @@ def test_add_points_discarding_the_oldest_when_the_list_grows_more_than_max_size
         1200,
     ]
 
-    vwap.add_point(new_point(sequence=1171))
+    vwap.add(new_point(sequence=1171))
     assert sequences(vwap) == [
         1020,
         1030,
@@ -150,7 +150,7 @@ def test_add_points_discarding_the_oldest_when_the_list_grows_more_than_max_size
         1200,
     ]
 
-    vwap.add_point(new_point(sequence=1201))
+    vwap.add(new_point(sequence=1201))
     assert sequences(vwap) == [
         1030,
         1040,
@@ -174,7 +174,7 @@ def test_add_points_discarding_the_oldest_when_the_list_grows_more_than_max_size
         1201,  # <== new point added here
     ]
 
-    vwap.add_point(new_point(sequence=1031))
+    vwap.add(new_point(sequence=1031))
     assert sequences(vwap) == [
         1031,  # <== new point added here
         1040,
@@ -202,20 +202,20 @@ def test_add_points_discarding_the_oldest_when_the_list_grows_more_than_max_size
 def test_do_not_add_point_that_has_a_sequence_smaller_than_the_least_sequence_when_the_list_is_already_full():
     vwap = VWAP(TradingPair.BTC_USD, max_size=10)
 
-    vwap.add_point(new_point(sequence=3))
-    vwap.add_point(new_point(sequence=10))
-    vwap.add_point(new_point(sequence=4))
-    vwap.add_point(new_point(sequence=6))
-    vwap.add_point(new_point(sequence=2))
-    vwap.add_point(new_point(sequence=11))
-    vwap.add_point(new_point(sequence=8))
-    vwap.add_point(new_point(sequence=9))
-    vwap.add_point(new_point(sequence=5))
-    vwap.add_point(new_point(sequence=7))
+    vwap.add(new_point(sequence=3))
+    vwap.add(new_point(sequence=10))
+    vwap.add(new_point(sequence=4))
+    vwap.add(new_point(sequence=6))
+    vwap.add(new_point(sequence=2))
+    vwap.add(new_point(sequence=11))
+    vwap.add(new_point(sequence=8))
+    vwap.add(new_point(sequence=9))
+    vwap.add(new_point(sequence=5))
+    vwap.add(new_point(sequence=7))
 
     assert sequences(vwap) == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
-    vwap.add_point(new_point(sequence=1))
+    vwap.add(new_point(sequence=1))
 
     assert sequences(vwap) == [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -224,7 +224,7 @@ def test_fail_when_trying_to_add_point_that_does_not_belong_to_the_vwap_trading_
     vwap = VWAP(TradingPair.ETH_BTC)
 
     with pytest.raises(ValueError) as e:
-        vwap.add_point(new_point(pair='BTC-USD'))
+        vwap.add(new_point(pair='BTC-USD'))
 
     assert str(e.value) == 'Unsupported trading pair: BTC-USD'
 
@@ -238,7 +238,7 @@ def test_compute_the_current_vwap_value_when_the_list_is_empty():
 def test_compute_the_current_vwap_value_when_the_list_has_one_point():
     vwap = VWAP(TradingPair.ETH_BTC)
 
-    vwap.add_point(new_point('ETH-BTC', quantity='0.00015', price='59326.253'))
+    vwap.add(new_point('ETH-BTC', quantity='0.00015', price='59326.253'))
 
     assert vwap.current_value() == Decimal('59326.253')
 
@@ -246,12 +246,12 @@ def test_compute_the_current_vwap_value_when_the_list_has_one_point():
 def test_compute_the_current_vwap_value_when_the_list_has_some_points():
     vwap = VWAP(TradingPair.BTC_USD)
 
-    vwap.add_point(new_point(quantity='1.23400', price='59293.253', sequence=5))
-    vwap.add_point(new_point(quantity='0.09123', price='59398.973', sequence=3))
-    vwap.add_point(new_point(quantity='1.00083', price='59325.001', sequence=1))
-    vwap.add_point(new_point(quantity='0.00015', price='59327.830', sequence=2))
-    vwap.add_point(new_point(quantity='0.89135', price='58725.301', sequence=6))
-    vwap.add_point(new_point(quantity='0.00378', price='59350.030', sequence=4))
+    vwap.add(new_point(quantity='1.23400', price='59293.253', sequence=5))
+    vwap.add(new_point(quantity='0.09123', price='59398.973', sequence=3))
+    vwap.add(new_point(quantity='1.00083', price='59325.001', sequence=1))
+    vwap.add(new_point(quantity='0.00015', price='59327.830', sequence=2))
+    vwap.add(new_point(quantity='0.89135', price='58725.301', sequence=6))
+    vwap.add(new_point(quantity='0.00378', price='59350.030', sequence=4))
 
     value = vwap.current_value()
 
@@ -274,3 +274,17 @@ def test_compute_the_current_vwap_value_when_the_list_has_some_points():
     )
 
     assert value == Decimal('59149.02574514642974662717999')
+
+
+def test_to_string():
+    assert str(VWAP(TradingPair.ETH_USD)) == 'VWAP[ETH-USD]'
+
+
+def test_supports_point_if_trading_pair_is_the_same():
+    vwap = VWAP(TradingPair.ETH_USD)
+    assert vwap.supports(new_point('ETH-USD')) is True
+
+
+def test_does_not_support_point_with_different_trading_pair():
+    vwap = VWAP(TradingPair.ETH_USD)
+    assert vwap.supports(new_point('BTC-USD')) is False
