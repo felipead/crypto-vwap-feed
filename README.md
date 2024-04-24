@@ -17,7 +17,7 @@ It connects to the [Coinbase WebSocket](https://docs.pro.coinbase.com/#the-match
 
 For every trading pair we're interested about (eg: `BTC-USD`), we compute the VWAP with at most 200 data points. It is computed as:
 
-![VWAP formula](https://wikimedia.org/api/rest_v1/media/math/render/svg/6c0a822a0a9e58a127105e818a07061a02851685)
+$$P_{VWAP} = \dfrac{\sum_j P_j \cdot  Q_j}{\sum_j Q_j}$$
 
 where:
 
