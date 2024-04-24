@@ -21,9 +21,9 @@ $$P_{VWAP} = \dfrac{\sum_j P_j \cdot  Q_j}{\sum_j Q_j}$$
 
 where:
 
-- $P_{VWAP}$ is the Volume Weighted Average Price;
-- $P_{j}$ is price of trade $j$;
-- $Q_{j}$ is quantity of trade $j$;
+- $P_{VWAP}$ is the Volume Weighted Average Price.
+- $P_{j}$ is price of trade $j$.
+- $Q_{j}$ is quantity of trade $j$.
 - $j$ is each individual trade that takes place over the defined period of time, excluding cross trades and basket cross trades.
 
 ### Out-of-order messages
