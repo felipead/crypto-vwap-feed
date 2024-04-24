@@ -21,10 +21,10 @@ For every trading pair we're interested about (eg: `BTC-USD`), we compute the VW
 
 where:
 
-- <img src="https://render.githubusercontent.com/render/math?math=P_{VWAP}"> is the Volume Weighted Average Price;
-- <img src="https://render.githubusercontent.com/render/math?math=P_{j}"> is price of trade <img src="https://render.githubusercontent.com/render/math?math=j">;
-- <img src="https://render.githubusercontent.com/render/math?math=Q_{j}"> is quantity of trade <img src="https://render.githubusercontent.com/render/math?math=j">;
-- <img src="https://render.githubusercontent.com/render/math?math=j"> is each individual trade that takes place over the defined period of time, excluding cross trades and basket cross trades.
+- $P_{VWAP}$ is the Volume Weighted Average Price;
+- $P_{j}$ is price of trade $j$;
+- $Q_{j}$ is quantity of trade $j$;
+- $j$ is each individual trade that takes place over the defined period of time, excluding cross trades and basket cross trades.
 
 ### Out-of-order messages
 
